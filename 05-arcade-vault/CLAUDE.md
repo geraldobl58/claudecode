@@ -30,6 +30,21 @@ There is no test runner configured in this repository yet.
 - Fonts: `next/font/google` (Geist Sans/Mono) wired into CSS variables and applied on `<html>` in `src/app/layout.tsx`.
 - TypeScript strict mode is on.
 
+## Design reference: `references/templates/`
+
+A standalone HTML/JSX prototype of the intended product — not part of the Next.js app, not imported from `src/`, and not built by any npm script. Open `references/templates/Arcade Vault.html` directly in a browser (loads React 18 + Babel standalone from CDN, transpiles the `.jsx` files in-browser) to preview it. It defines the target screens and client-side flow to port into the App Router:
+
+- `app.jsx` — root shell: hash-based routing (`location.hash`) and `av_user`/`av_scores` state persisted to `localStorage`.
+- `nav.jsx` — top nav (Biblioteca / Salón de la Fama, auth button).
+- `auth.jsx` — sign in / sign up forms (mocked, no real auth).
+- `biblioteca.jsx` — game library grid (`GameCard`).
+- `detalle.jsx` — single game detail page (`GameDetail`).
+- `reproductor.jsx` — the game player/HUD (`GamePlayer`) with score, lives, level.
+- `salon.jsx` — leaderboard / hall of fame (`HallOfFame`), per-game score tables.
+- `data.jsx` — mock `GAMES` array (id, title, category, cover art class, best score, play count) shared by the above.
+
+Treat this as UX/interaction reference, not code to import — when building the real routes under `src/app/`, reimplement this logic idiomatically for the App Router (server components, real routing, real auth/data) rather than copying the client-only hash-router/localStorage pattern wholesale.
+
 ## Workflow
 
 The README indicates this project intends to follow Spec Driven Design using the `/spec` and `/spec-impl` workflow from https://github.com/Klerith/fernando-skills, installed via `npx skills@latest add Klerith/fernando-skills`. These skills are not currently installed in this repo — check for their presence before assuming `/spec` or `/spec-impl` are available.
