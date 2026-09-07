@@ -15,11 +15,11 @@ export default function SignInPage() {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     signIn(username || "PLAYER1");
-    router.push("/");
+    router.push("/games");
   };
 
   const playAsGuest = () => {
-    router.push("/");
+    router.push("/games");
   };
 
   return (
