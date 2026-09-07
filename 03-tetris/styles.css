@@ -1,0 +1,493 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  color: #eee;
+}
+
+.game-wrapper {
+  display: flex;
+  gap: 16px;
+  border: 2px solid #444;
+  padding: 8px;
+  position: relative;
+}
+
+#board {
+  display: block;
+  background: #000;
+}
+
+.panel {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+.stat-label {
+  color: #888;
+  font-size: 0.6em;
+}
+
+.stat-value {
+  font-size: 1em;
+  color: #0f0;
+  text-shadow: 0 0 4px #0f0;
+}
+
+.next-piece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+.next-piece canvas {
+  display: block;
+  background: #000;
+}
+
+.panel h2 {
+  font-size: 0.7em;
+  margin: 8px 0 4px;
+  color: #aaa;
+}
+
+.controls {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.55em;
+  line-height: 1.5;
+}
+
+.controls li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+kbd {
+  background: #222;
+  border: 1px solid #555;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-family: inherit;
+  font-size: 0.9em;
+}
+
+.game-over {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  width: 300px;
+  max-height: 88%;
+  overflow-y: auto;
+  text-align: center;
+  font-size: 1.1em;
+  color: #f00000;
+  text-shadow: 0 0 6px #f00000;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 16px 0;
+  box-sizing: border-box;
+}
+
+/* ---- High-score leaderboard (start screen + game-over overlay) ---- */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  box-sizing: border-box;
+  z-index: 20;
+  text-align: center;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay-title {
+  font-size: 1.6em;
+  color: #0f0;
+  text-shadow: 0 0 8px #0f0;
+  margin: 0;
+}
+
+.leaderboard-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.leaderboard-block h2 {
+  font-size: 0.7em;
+  color: #aaa;
+  margin: 0;
+}
+
+.leaderboard-table {
+  width: 100%;
+  max-width: 320px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.5em;
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  border: 1px solid #333;
+  padding: 6px 4px;
+  text-align: center;
+  color: #eee;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard-table th {
+  color: #888;
+  background: #151515;
+}
+
+.leaderboard-table td {
+  color: #0f0;
+}
+
+.leaderboard-empty {
+  color: #666 !important;
+}
+
+.leaderboard-row-new {
+  background: rgba(0, 255, 0, 0.15);
+  box-shadow: inset 0 0 0 1px #0f0;
+}
+
+.leaderboard-row-new td {
+  color: #0f0;
+  text-shadow: 0 0 6px #0f0;
+}
+
+.all-time-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 0.5em;
+  color: #aaa;
+}
+
+.all-time-stats strong {
+  color: #0f0;
+  text-shadow: 0 0 4px #0f0;
+}
+
+.overlay-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 0.6em;
+  padding: 10px 16px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  cursor: pointer;
+  background: #1a1a1a;
+  color: #eee;
+}
+
+.btn-primary {
+  border-color: #0f0;
+  color: #0f0;
+  text-shadow: 0 0 4px #0f0;
+}
+
+.btn-primary:hover {
+  background: #0f0;
+  color: #000;
+  text-shadow: none;
+}
+
+.btn-secondary {
+  color: #f00000;
+  border-color: #f00000;
+}
+
+.btn-secondary:hover {
+  background: #f00000;
+  color: #000;
+}
+
+.highscore-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.highscore-msg {
+  margin: 0;
+  font-size: 0.6em;
+  color: #0f0;
+  text-shadow: 0 0 4px #0f0;
+}
+
+.name-input {
+  font-family: inherit;
+  font-size: 0.6em;
+  padding: 6px 8px;
+  background: #000;
+  border: 1px solid #0f0;
+  color: #0f0;
+  width: 70%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.pause-overlay[hidden] {
+  display: none;
+}
+
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.pause-overlay h2 {
+  margin: 0;
+  font-size: 1em;
+  color: #0f0;
+  text-shadow: 0 0 6px #0f0;
+}
+
+.pause-overlay h3 {
+  margin: 0 0 8px;
+  font-size: 0.65em;
+  color: #aaa;
+}
+
+.pause-hint {
+  margin: -6px 0 0;
+  font-size: 0.6em;
+  color: #ccc;
+}
+
+.pause-hint kbd {
+  font-size: 1em;
+}
+
+.pause-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pause-overlay button {
+  font-family: inherit;
+  font-size: 0.6em;
+  background: #1a1a1a;
+  color: #0f0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.pause-overlay button:hover {
+  background: #0f0;
+  color: #1a1a1a;
+  border-color: #0f0;
+}
+
+.pause-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pause-section label {
+  font-size: 0.55em;
+  color: #888;
+}
+
+.pause-section select {
+  font-family: inherit;
+  font-size: 0.6em;
+  background: #222;
+  color: #eee;
+  border: 1px solid #555;
+  border-radius: 3px;
+  padding: 4px 6px;
+}
+
+.pause-section .controls {
+  font-size: 0.5em;
+  text-align: left;
+}
+
+.theme-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#theme-select {
+  background: #1a1a1a;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 6px;
+  font-family: inherit;
+  font-size: 0.6em;
+}
+
+/* Tema Neon: chrome escuro com bordas e texto brilhantes em ciano. */
+body[data-theme="neon"] {
+  background: #000;
+}
+
+body[data-theme="neon"] .game-wrapper {
+  border-color: #0ff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.35);
+}
+
+body[data-theme="neon"] .stat,
+body[data-theme="neon"] .next-piece,
+body[data-theme="neon"] #theme-select {
+  background: #050505;
+  border-color: #0ff;
+}
+
+body[data-theme="neon"] .stat-value {
+  color: #0ff;
+  text-shadow: 0 0 8px #0ff;
+}
+
+body[data-theme="neon"] .panel h2 {
+  color: #0ff;
+}
+
+body[data-theme="neon"] kbd {
+  background: #050505;
+  border-color: #0ff;
+  color: #0ff;
+}
+
+/* Tema Pastel: chrome claro e suave para acompanhar a paleta clareada. */
+body[data-theme="pastel"] {
+  background: #f5f0f8;
+  color: #444;
+}
+
+body[data-theme="pastel"] .game-wrapper {
+  border-color: #d8c8e8;
+  background: #fff;
+}
+
+body[data-theme="pastel"] #board {
+  background: #241f2b;
+}
+
+body[data-theme="pastel"] .stat,
+body[data-theme="pastel"] .next-piece,
+body[data-theme="pastel"] #theme-select {
+  background: #faf5fd;
+  border-color: #e0d0ee;
+  color: #444;
+}
+
+body[data-theme="pastel"] .stat-label {
+  color: #a897b8;
+}
+
+body[data-theme="pastel"] .stat-value {
+  color: #b083c9;
+  text-shadow: none;
+}
+
+body[data-theme="pastel"] .panel h2 {
+  color: #9c88ac;
+}
+
+body[data-theme="pastel"] kbd {
+  background: #f0e6f7;
+  border-color: #d8c8e8;
+  color: #555;
+}
+
+body[data-theme="pastel"] .game-over {
+  background: rgba(255, 255, 255, 0.85);
+  color: #c0392b;
+  text-shadow: none;
+}
+
+/* Tema Pixel Art: chrome com quinas retas, sem brilho, mais "de 8-bit". */
+body[data-theme="pixel"] .game-wrapper,
+body[data-theme="pixel"] .stat,
+body[data-theme="pixel"] .next-piece,
+body[data-theme="pixel"] #theme-select {
+  border-radius: 0;
+}
+
+body[data-theme="pixel"] .stat-value {
+  color: #ffcc00;
+  text-shadow: none;
+}
+
+body[data-theme="pixel"] .panel h2 {
+  color: #ffcc00;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tetris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="game-wrapper">
+    <canvas id="board" width="300" height="600"></canvas>
+    <div id="pause-overlay" class="pause-overlay" hidden>
+      <h2>Pausado</h2>
+      <p class="pause-hint">Pressione <kbd>P</kbd> para voltar ao jogo</p>
+      <div class="pause-actions">
+        <button id="pause-resume-btn" type="button">Resume</button>
+        <button id="pause-restart-btn" type="button">Restart</button>
+      </div>
+      <div class="pause-section">
+        <label for="initial-level-select">Nível inicial</label>
+        <select id="initial-level-select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="pause-section">
+        <h3>Controles</h3>
+        <ul class="controls">
+          <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Mover</li>
+          <li><kbd>&uarr;</kbd> Girar</li>
+          <li><kbd>&darr;</kbd> Descer (soft drop)</li>
+          <li><kbd>Espaço</kbd> Queda instantânea</li>
+          <li><kbd>P</kbd> <kbd>Esc</kbd> Pausar/Continuar</li>
+          <li><kbd>R</kbd> Reiniciar</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="panel">
+      <div class="stat">
+        <span class="stat-label">Score</span>
+        <span id="score" class="stat-value">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Lines</span>
+        <span id="lines" class="stat-value">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Level</span>
+        <span id="level" class="stat-value">1</span>
+      </div>
+      <div id="game-over" class="game-over" hidden>
+        Game Over
+        <div id="game-over-highscore-entry" class="highscore-entry" hidden>
+          <p class="highscore-msg">Salve seu resultado</p>
+          <input type="text" id="name-input" class="name-input" maxlength="12" placeholder="Seu nome" />
+          <button id="submit-score-button" class="btn btn-primary" type="button">Salvar</button>
+        </div>
+        <table id="gameover-leaderboard" class="leaderboard-table">
+          <thead>
+            <tr><th>Nome</th><th>Score</th><th>Linhas</th><th>Combo</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="theme-picker">
+        <label for="theme-select" class="stat-label">Tema</label>
+        <select id="theme-select">
+          <option value="retro">Retro</option>
+          <option value="neon">Neon</option>
+          <option value="pastel">Pastel</option>
+          <option value="pixel">Pixel Art</option>
+        </select>
+      </div>
+      <h2>Controles</h2>
+      <ul class="controls">
+        <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Mover</li>
+        <li><kbd>&uarr;</kbd> Girar</li>
+        <li><kbd>&darr;</kbd> Descer (soft drop)</li>
+        <li><kbd>Espaço</kbd> Queda instantânea</li>
+        <li><kbd>P</kbd> <kbd>Esc</kbd> Pausar</li>
+        <li><kbd>R</kbd> Reiniciar</li>
+      </ul>
+      <div class="next-piece">
+        <h2>Próxima peça</h2>
+        <canvas id="next-piece-canvas" width="120" height="120"></canvas>
+      </div>
+    </aside>
+    <div id="start-screen" class="overlay">
+      <h1 class="overlay-title">TETRIS</h1>
+      <div class="leaderboard-block">
+        <h2>Recordes</h2>
+        <table id="start-leaderboard" class="leaderboard-table">
+          <thead>
+            <tr><th>Nome</th><th>Score</th><th>Linhas</th><th>Combo</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="all-time-stats">
+          <span>Melhor combo: <strong id="start-best-combo">0</strong></span>
+          <span>Máx. linhas: <strong id="start-max-lines">0</strong></span>
+        </div>
+      </div>
+      <div class="overlay-actions">
+        <button id="start-button" class="btn btn-primary" type="button">Start</button>
+        <button id="clear-scores-button" class="btn btn-secondary" type="button">Limpar recordes</button>
+      </div>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
