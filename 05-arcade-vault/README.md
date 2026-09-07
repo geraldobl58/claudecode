@@ -1,15 +1,15 @@
 ## Arcade Vault
 
-Es una plataforma para jugar online y competir por la mayor cantidad de puntos.
+A platform for playing games online and competing for the highest score.
 
-## Usa Spec Driven Design
+## Uses Spec Driven Design
 
-Basado en /spec y /spec-impl
+Based on /spec and /spec-impl
 
-Siguiendo las buenas practicas recomendadas aquí:
+Following the good practices recommended here:
 https://github.com/Klerith/fernando-skills
 
-## Skills usadas
+## Skills used
 
 ```bash
 npx skills@latest add Klerith/fernando-skills

@@ -8,7 +8,7 @@ function GamePlayer({ id, user, navigate, onSaveScore }) {
   const [level, setLevel] = useStateP(1);
   const [paused, setPaused] = useStateP(false);
   const [over, setOver] = useStateP(false);
-  const [name, setName] = useStateP(user ? user.name : "INVITADO");
+  const [name, setName] = useStateP(user ? user.name : "GUEST");
   const [saved, setSaved] = useStateP(false);
 
   useEffectP(() => {
@@ -28,15 +28,15 @@ function GamePlayer({ id, user, navigate, onSaveScore }) {
     <div className="av-player fade-in">
       <div className="player-hud">
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-          <div className="hud-stat"><div className="l">Jugador</div><div className="v" style={{ color: "var(--ink)" }}>{name}</div></div>
-          <div className="hud-stat"><div className="l">Puntuación</div><div className="v">{score.toLocaleString("es-ES")}</div></div>
-          <div className="hud-stat lives"><div className="l">Vidas</div><div className="v">{"♥ ".repeat(lives).trim() || "—"}</div></div>
-          <div className="hud-stat level"><div className="l">Nivel</div><div className="v">{String(level).padStart(2, "0")}</div></div>
+          <div className="hud-stat"><div className="l">Player</div><div className="v" style={{ color: "var(--ink)" }}>{name}</div></div>
+          <div className="hud-stat"><div className="l">Score</div><div className="v">{score.toLocaleString("en-US")}</div></div>
+          <div className="hud-stat lives"><div className="l">Lives</div><div className="v">{"♥ ".repeat(lives).trim() || "—"}</div></div>
+          <div className="hud-stat level"><div className="l">Level</div><div className="v">{String(level).padStart(2, "0")}</div></div>
         </div>
         <div className="hud-actions">
-          <button className="btn yellow" onClick={() => setPaused(p => !p)}>{paused ? "REANUDAR" : "PAUSA"}</button>
-          <button className="btn magenta" onClick={endGame}>FIN</button>
-          <button className="btn ghost" onClick={() => navigate({ name: "detalle", id: game.id })}>SALIR</button>
+          <button className="btn yellow" onClick={() => setPaused(p => !p)}>{paused ? "RESUME" : "PAUSE"}</button>
+          <button className="btn magenta" onClick={endGame}>END</button>
+          <button className="btn ghost" onClick={() => navigate({ name: "detail", id: game.id })}>EXIT</button>
         </div>
       </div>
 
@@ -52,38 +52,38 @@ function GamePlayer({ id, user, navigate, onSaveScore }) {
           {paused && (
             <div className="crt-content" style={{ background: "rgba(0,0,0,0.6)", zIndex: 5 }}>
               <div>
-                <div className="pixel neon-yellow" style={{ fontSize: 22 }}>EN PAUSA</div>
-                <div className="mono" style={{ fontSize: 11, color: "var(--ink-dim)", marginTop: 10, letterSpacing: "0.16em" }}>PULSA REANUDAR PARA CONTINUAR</div>
+                <div className="pixel neon-yellow" style={{ fontSize: 22 }}>PAUSED</div>
+                <div className="mono" style={{ fontSize: 11, color: "var(--ink-dim)", marginTop: 10, letterSpacing: "0.16em" }}>PRESS RESUME TO CONTINUE</div>
               </div>
             </div>
           )}
         </div>
         <div className="crt-bottom">
-          <span className="led">SEÑAL OK</span>
+          <span className="led">SIGNAL OK</span>
           <span>{game.title} · CRT-83 · 60 HZ</span>
-          <span>CARGA · 1MB</span>
+          <span>LOAD · 1MB</span>
         </div>
       </div>
 
       {over && (
         <div className="modal-bd" onClick={() => {}}>
           <div className="modal">
-            <h2>FIN DEL JUEGO</h2>
-            <div className="final-label">PUNTUACIÓN FINAL</div>
-            <div className="final">{score.toLocaleString("es-ES")}</div>
+            <h2>GAME OVER</h2>
+            <div className="final-label">FINAL SCORE</div>
+            <div className="final">{score.toLocaleString("en-US")}</div>
             {!saved ? (
               <React.Fragment>
                 <div className="input-row">
-                  <input value={name} onChange={(e) => setName(e.target.value.toUpperCase().slice(0, 10))} placeholder="TUS INICIALES" />
-                  <button className="btn yellow" onClick={() => { onSaveScore && onSaveScore({ game: game.id, score, name }); setSaved(true); }}>GUARDAR PUNTUACIÓN</button>
+                  <input value={name} onChange={(e) => setName(e.target.value.toUpperCase().slice(0, 10))} placeholder="YOUR INITIALS" />
+                  <button className="btn yellow" onClick={() => { onSaveScore && onSaveScore({ game: game.id, score, name }); setSaved(true); }}>SAVE SCORE</button>
                 </div>
               </React.Fragment>
             ) : (
-              <div className="toast-saved">▸ PUNTUACIÓN GUARDADA_</div>
+              <div className="toast-saved">▸ SCORE SAVED_</div>
             )}
             <div className="actions">
-              <button className="btn" onClick={restart}>JUGAR DE NUEVO</button>
-              <button className="btn magenta" onClick={() => navigate({ name: "biblioteca" })}>VOLVER AL VAULT</button>
+              <button className="btn" onClick={restart}>PLAY AGAIN</button>
+              <button className="btn magenta" onClick={() => navigate({ name: "library" })}>BACK TO VAULT</button>
             </div>
           </div>
         </div>

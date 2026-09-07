@@ -2,10 +2,10 @@
 
 const GAMES = [
   {
-    id: "bloque-buster",
-    title: "BLOQUE BUSTER",
-    short: "Rebota la pelota y destruye muros de neón.",
-    long: "Pilota una nave-paleta y rebota un núcleo de plasma para pulverizar muros de bloques cromáticos. Cada nivel reorganiza la grilla en patrones imposibles. ¿Hasta dónde llegará tu racha?",
+    id: "block-buster",
+    title: "BLOCK BUSTER",
+    short: "Bounce the ball and smash neon walls.",
+    long: "Pilot a paddle-ship and bounce a plasma core to pulverize walls of chromatic blocks. Every level rearranges the grid into impossible patterns. How far will your streak go?",
     cat: "ARCADE",
     cover: "cover-bricks",
     color: "cyan",
@@ -13,10 +13,10 @@ const GAMES = [
     plays: "12.4K",
   },
   {
-    id: "caida",
-    title: "CAÍDA",
-    short: "Encaja las piezas antes de que el techo te aplaste.",
-    long: "Piezas geométricas descienden desde la oscuridad. Rótalas, encástralas y limpia líneas para sobrevivir. La velocidad aumenta sin piedad cada 10 líneas.",
+    id: "descent",
+    title: "DESCENT",
+    short: "Fit the pieces before the ceiling crushes you.",
+    long: "Geometric pieces fall from the darkness. Rotate them, lock them in, and clear lines to survive. The speed ramps up without mercy every 10 lines.",
     cat: "PUZZLE",
     cover: "cover-tetro",
     color: "magenta",
@@ -24,10 +24,10 @@ const GAMES = [
     plays: "31.8K",
   },
   {
-    id: "serpentina",
-    title: "SERPENTINA",
-    short: "Crece sin morder tu propia cola.",
-    long: "Una serpiente de luz recorre la grilla buscando núcleos magenta. Cada bocado la alarga y la hace más veloz. Un movimiento en falso y se devora a sí misma.",
+    id: "serpentine",
+    title: "SERPENTINE",
+    short: "Grow without biting your own tail.",
+    long: "A snake of light slithers across the grid hunting magenta cores. Every bite makes it longer and faster. One wrong move and it devours itself.",
     cat: "ARCADE",
     cover: "cover-snake",
     color: "green",
@@ -35,10 +35,10 @@ const GAMES = [
     plays: "9.1K",
   },
   {
-    id: "gloton",
-    title: "GLOTÓN",
-    short: "Devora puntos y escapa de los fantasmas.",
-    long: "Un círculo glotón patrulla un laberinto coleccionando puntos luminosos. Cuatro espectros lo persiguen, pero cada cierto tiempo aparece una píldora que invierte los papeles.",
+    id: "glutton",
+    title: "GLUTTON",
+    short: "Devour points and dodge the ghosts.",
+    long: "A hungry circle patrols a maze collecting glowing points. Four spectres give chase, but every so often a power pill turns the tables.",
     cat: "ARCADE",
     cover: "cover-glot",
     color: "yellow",
@@ -46,10 +46,10 @@ const GAMES = [
     plays: "27.2K",
   },
   {
-    id: "invasores",
-    title: "INVASORES",
-    short: "Defiende el planeta de filas alienígenas.",
-    long: "Olas de pixeles hostiles descienden formación tras formación. Mueve tu cañón en horizontal y abre fuego con precisión, antes de que toquen la superficie.",
+    id: "invaders",
+    title: "INVADERS",
+    short: "Defend the planet from alien rows.",
+    long: "Waves of hostile pixels descend formation after formation. Move your cannon horizontally and open fire with precision before they reach the surface.",
     cat: "SHOOTER",
     cover: "cover-invaders",
     color: "green",
@@ -57,10 +57,10 @@ const GAMES = [
     plays: "18.0K",
   },
   {
-    id: "rocas",
-    title: "ROCAS",
-    short: "Pulveriza asteroides en gravedad cero.",
-    long: "Tu nave triangular flota en vacío absoluto. Dispara y rota para dividir rocas en fragmentos cada vez más pequeños. Cuidado con los OVNIs en el horizonte.",
+    id: "rocks",
+    title: "ROCKS",
+    short: "Pulverize asteroids in zero gravity.",
+    long: "Your triangular ship floats in absolute vacuum. Fire and rotate to split rocks into ever-smaller fragments. Watch out for UFOs on the horizon.",
     cat: "SHOOTER",
     cover: "cover-rocas",
     color: "yellow",
@@ -68,10 +68,10 @@ const GAMES = [
     plays: "15.6K",
   },
   {
-    id: "ranaria",
-    title: "RANARIA",
-    short: "Cruza la autopista de pixeles.",
-    long: "Salta entre carriles de coches a toda velocidad y troncos a la deriva en el río. Llega a los nenúfares antes de que se acabe el tiempo.",
+    id: "crossing",
+    title: "CROSSING",
+    short: "Cross the pixel highway.",
+    long: "Hop between lanes of speeding cars and drifting logs on the river. Reach the lily pads before time runs out.",
     cat: "ARCADE",
     cover: "cover-rana",
     color: "green",
@@ -79,10 +79,10 @@ const GAMES = [
     plays: "6.4K",
   },
   {
-    id: "duelo-pixel",
-    title: "DUELO PIXEL",
-    short: "Dos paletas. Una pelota. Reflejos máximos.",
-    long: "El duelo más puro: dos paletas verticales se enfrentan por rebotar una pelota luminosa. Modo solitario contra la CPU o partida local a dos jugadores.",
+    id: "pixel-duel",
+    title: "PIXEL DUEL",
+    short: "Two paddles. One ball. Maximum reflexes.",
+    long: "The purest duel: two vertical paddles fight to bounce a glowing ball. Solo mode against the CPU or local two-player match.",
     cat: "VERSUS",
     cover: "cover-duelo",
     color: "cyan",
@@ -91,7 +91,7 @@ const GAMES = [
   },
 ];
 
-const CATS = ["TODOS", "ARCADE", "PUZZLE", "SHOOTER", "VERSUS"];
+const CATS = ["ALL", "ARCADE", "PUZZLE", "SHOOTER", "VERSUS"];
 
 const PLAYERS = [
   "PX_KAI", "NEONFOX", "Z3R0COOL", "M00NRYU", "VAULT_07", "GLITCHA",

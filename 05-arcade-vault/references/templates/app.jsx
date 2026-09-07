@@ -7,7 +7,7 @@ function App() {
       const h = location.hash.replace(/^#/, "");
       if (h) return JSON.parse(decodeURIComponent(h));
     } catch (e) {}
-    return { name: "biblioteca" };
+    return { name: "library" };
   });
   const [user, setUser] = useStateApp(() => {
     try { return JSON.parse(localStorage.getItem("av_user") || "null"); } catch (e) { return null; }
@@ -30,18 +30,18 @@ function App() {
   };
 
   let screen = null;
-  if (route.name === "biblioteca") screen = <Library navigate={navigate} />;
-  else if (route.name === "detalle") screen = <GameDetail id={route.id} navigate={navigate} />;
+  if (route.name === "library") screen = <Library navigate={navigate} />;
+  else if (route.name === "detail") screen = <GameDetail id={route.id} navigate={navigate} />;
   else if (route.name === "player") screen = <GamePlayer id={route.id} user={user} navigate={navigate} onSaveScore={handleSaveScore} />;
   else if (route.name === "auth") screen = <Auth navigate={navigate} onLogin={handleLogin} />;
-  else if (route.name === "salon") screen = <HallOfFame user={user} navigate={navigate} />;
+  else if (route.name === "hall") screen = <HallOfFame user={user} navigate={navigate} />;
 
   return (
     <React.Fragment>
       <Nav route={route} navigate={navigate} user={user} onSignOut={handleSignOut} />
       <main className="av-main">{screen}</main>
       <footer style={{ borderTop: "1px solid var(--line)", padding: "20px 32px", textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.16em" }}>
-        © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+        © 2026 ARCADE VAULT · MADE WITH PIXELS AND NEON · v2.6.0
       </footer>
     </React.Fragment>
   );
