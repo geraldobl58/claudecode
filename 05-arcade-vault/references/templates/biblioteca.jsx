@@ -31,11 +31,11 @@ function GameCard({ game, onSelect }) {
         <div className="desc">{game.short}</div>
         <div className="row">
           <div className="score-badge">
-            <span>MEJOR PUNTUACIÓN</span>
-            <b>{game.best.toLocaleString("es-ES")}</b>
+            <span>HIGH SCORE</span>
+            <b>{game.best.toLocaleString("en-US")}</b>
           </div>
           <button className={"btn " + (game.color === "magenta" ? "magenta" : game.color === "yellow" ? "yellow" : "")}
-            onClick={(e) => { e.stopPropagation(); onSelect(game); }}>JUGAR</button>
+            onClick={(e) => { e.stopPropagation(); onSelect(game); }}>PLAY</button>
         </div>
       </div>
     </div>
@@ -44,17 +44,17 @@ function GameCard({ game, onSelect }) {
 
 function Library({ navigate }) {
   const [q, setQ] = useStateB("");
-  const [cat, setCat] = useStateB("TODOS");
+  const [cat, setCat] = useStateB("ALL");
 
   const filtered = useMemoB(() => {
-    return GAMES.filter(g => (cat === "TODOS" || g.cat === cat) && g.title.toLowerCase().includes(q.toLowerCase()));
+    return GAMES.filter(g => (cat === "ALL" || g.cat === cat) && g.title.toLowerCase().includes(q.toLowerCase()));
   }, [q, cat]);
 
   return (
     <div className="fade-in">
       <section className="av-hero">
         <h1 className="flicker">ARCADE VAULT</h1>
-        <div className="sub">INSERTA UNA MONEDA PARA JUGAR <span className="blink">_</span></div>
+        <div className="sub">INSERT COIN TO PLAY <span className="blink">_</span></div>
       </section>
 
       <div className="av-filters">
@@ -63,7 +63,7 @@ function Library({ navigate }) {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Buscar un juego por nombre…"
+            placeholder="Search a game by name…"
           />
         </div>
         <div className="av-chips">
@@ -75,12 +75,12 @@ function Library({ navigate }) {
 
       <div className="av-grid">
         {filtered.map(g => (
-          <GameCard key={g.id} game={g} onSelect={(game) => navigate({ name: "detalle", id: game.id })} />
+          <GameCard key={g.id} game={g} onSelect={(game) => navigate({ name: "detail", id: game.id })} />
         ))}
         {filtered.length === 0 && (
           <div style={{ gridColumn: "1 / -1", textAlign: "center", padding: 80, color: "var(--ink-faint)" }}>
-            <div className="pixel" style={{ fontSize: 14, color: "var(--magenta)", marginBottom: 12 }}>NO HAY RESULTADOS</div>
-            <div>Intenta otra búsqueda o categoría.</div>
+            <div className="pixel" style={{ fontSize: 14, color: "var(--magenta)", marginBottom: 12 }}>NO RESULTS FOUND</div>
+            <div>Try another search or category.</div>
           </div>
         )}
       </div>

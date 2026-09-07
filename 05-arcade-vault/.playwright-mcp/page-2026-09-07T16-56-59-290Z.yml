@@ -1,0 +1,122 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - link "ARCADE VAULT" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e7]:
+      - link "Library" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - link "Hall of Fame" [ref=e9] [cursor=pointer]:
+        - /url: /hall-of-fame
+    - generic [ref=e10]: CREDITS · 03
+    - link "Sign In" [ref=e13] [cursor=pointer]:
+      - /url: /sign-in
+  - complementary [ref=e14]:
+    - generic [ref=e15]: MENU
+    - link "Library" [ref=e16] [cursor=pointer]:
+      - /url: /
+    - link "Hall of Fame" [ref=e17] [cursor=pointer]:
+      - /url: /hall-of-fame
+    - link "Sign In" [ref=e18] [cursor=pointer]:
+      - /url: /sign-in
+    - generic [ref=e20]: CREDITS · 03
+  - main [ref=e21]:
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "ARCADE VAULT" [level=1] [ref=e24]
+        - generic [ref=e25]: INSERT COIN TO PLAY _
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: ⌕
+          - textbox "Search a game by name…" [ref=e29]
+        - generic [ref=e30]:
+          - button "ALL" [ref=e31] [cursor=pointer]
+          - button "ARCADE" [ref=e32] [cursor=pointer]
+          - button "PUZZLE" [ref=e33] [cursor=pointer]
+          - button "SHOOTER" [ref=e34] [cursor=pointer]
+          - button "VERSUS" [ref=e35] [cursor=pointer]
+      - generic [ref=e36]:
+        - generic [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: ARCADE
+          - generic [ref=e41]:
+            - generic [ref=e42]: BLOCK BUSTER
+            - generic [ref=e43]: Bounce the ball and smash neon walls.
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - generic [ref=e46]: HIGH SCORE
+                - generic [ref=e47]: 28,450
+              - button "PLAY" [ref=e48]
+        - generic [ref=e49] [cursor=pointer]:
+          - generic [ref=e50]: PUZZLE
+          - generic [ref=e53]:
+            - generic [ref=e54]: DESCENT
+            - generic [ref=e55]: Fit the pieces before the ceiling crushes you.
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e58]: HIGH SCORE
+                - generic [ref=e59]: 184,220
+              - button "PLAY" [ref=e60]
+        - generic [ref=e61] [cursor=pointer]:
+          - generic [ref=e62]: ARCADE
+          - generic [ref=e65]:
+            - generic [ref=e66]: SERPENTINE
+            - generic [ref=e67]: Grow without biting your own tail.
+            - generic [ref=e68]:
+              - generic [ref=e69]:
+                - generic [ref=e70]: HIGH SCORE
+                - generic [ref=e71]: 7,820
+              - button "PLAY" [ref=e72]
+        - generic [ref=e73] [cursor=pointer]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: •••
+            - generic [ref=e76]: ARCADE
+          - generic [ref=e77]:
+            - generic [ref=e78]: GLUTTON
+            - generic [ref=e79]: Devour points and dodge the ghosts.
+            - generic [ref=e80]:
+              - generic [ref=e81]:
+                - generic [ref=e82]: HIGH SCORE
+                - generic [ref=e83]: 96,400
+              - button "PLAY" [ref=e84]
+        - generic [ref=e85] [cursor=pointer]:
+          - generic [ref=e86]: SHOOTER
+          - generic [ref=e89]:
+            - generic [ref=e90]: INVADERS
+            - generic [ref=e91]: Defend the planet from alien rows.
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e94]: HIGH SCORE
+                - generic [ref=e95]: 54,190
+              - button "PLAY" [ref=e96]
+        - generic [ref=e97] [cursor=pointer]:
+          - generic [ref=e98]:
+            - generic [ref=e99]: ▲
+            - generic [ref=e100]: SHOOTER
+          - generic [ref=e101]:
+            - generic [ref=e102]: ROCKS
+            - generic [ref=e103]: Pulverize asteroids in zero gravity.
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - generic [ref=e106]: HIGH SCORE
+                - generic [ref=e107]: 41,200
+              - button "PLAY" [ref=e108]
+        - generic [ref=e109] [cursor=pointer]:
+          - generic [ref=e110]: ARCADE
+          - generic [ref=e113]:
+            - generic [ref=e114]: CROSSING
+            - generic [ref=e115]: Cross the pixel highway.
+            - generic [ref=e116]:
+              - generic [ref=e117]:
+                - generic [ref=e118]: HIGH SCORE
+                - generic [ref=e119]: 18,900
+              - button "PLAY" [ref=e120]
+        - generic [ref=e121] [cursor=pointer]:
+          - generic [ref=e122]: VERSUS
+          - generic [ref=e125]:
+            - generic [ref=e126]: PIXEL DUEL
+            - generic [ref=e127]: Two paddles. One ball. Maximum reflexes.
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - generic [ref=e130]: HIGH SCORE
+                - generic [ref=e131]: "24"
+              - button "PLAY" [ref=e132]
+  - contentinfo [ref=e133]: © 2026 ARCADE VAULT · MADE WITH PIXELS AND NEON · v2.6.0

@@ -1,23 +1,32 @@
-// ===== salon.jsx =====
-const { useState: useStateS, useMemo: useMemoS } = React;
+"use client";
 
-function HallOfFame({ user, navigate }) {
-  const [tab, setTab] = useStateS(GAMES[0].id);
-  const rows = useMemoS(() => seededScores(tab.length * 23 + 7, 12), [tab]);
-  const game = GAMES.find(g => g.id === tab);
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { GAMES, seededScores } from "@/data/games";
+import { useAuth } from "@/context/auth-context";
+
+export default function HallOfFamePage() {
+  const [tab, setTab] = useState(GAMES[0].id);
+  const { user } = useAuth();
+  const game = GAMES.find((g) => g.id === tab)!;
+  const rows = useMemo(() => seededScores(tab.length * 23 + 7, 12), [tab]);
   const youRank = user ? Math.floor(8 + (tab.length % 4)) : null;
-  const youScore = user ? (rows[5]?.score - 2400) : null;
+  const youScore = user ? rows[5]?.score - 2400 : null;
 
   return (
     <div className="av-hall fade-in">
       <div className="hall-head">
         <h1>HALL OF FAME</h1>
-        <p className="pixel" style={{ fontSize: 10 }}>THE NAMES THAT NEVER FADE FROM THE SCREEN</p>
+        <p className="pixel" style={{ fontSize: 10 }}>
+          THE NAMES THAT NEVER FADE FROM THE SCREEN
+        </p>
       </div>
 
       <div className="hall-tabs">
-        {GAMES.map(g => (
-          <button key={g.id} className={"chip" + (tab === g.id ? " active" : "")} onClick={() => setTab(g.id)}>{g.title}</button>
+        {GAMES.map((g) => (
+          <button key={g.id} className={`chip${tab === g.id ? " active" : ""}`} onClick={() => setTab(g.id)}>
+            {g.title}
+          </button>
         ))}
       </div>
 
@@ -29,10 +38,16 @@ function HallOfFame({ user, navigate }) {
           <div className="date">{rows[1].date}</div>
         </div>
         <div className="podium-slot gold">
-          <div className="pixel" style={{ fontSize: 9, color: "var(--gold)", letterSpacing: "0.18em" }}>CHAMPION</div>
-          <div className="rank-num" style={{ fontSize: 36, marginTop: 4 }}>01</div>
+          <div className="pixel" style={{ fontSize: 9, color: "var(--gold)", letterSpacing: "0.18em" }}>
+            CHAMPION
+          </div>
+          <div className="rank-num" style={{ fontSize: 36, marginTop: 4 }}>
+            01
+          </div>
           <div className="name">{rows[0].name}</div>
-          <div className="score" style={{ fontSize: 20 }}>{rows[0].score.toLocaleString("en-US")}</div>
+          <div className="score" style={{ fontSize: 20 }}>
+            {rows[0].score.toLocaleString("en-US")}
+          </div>
           <div className="date">{rows[0].date}</div>
         </div>
         <div className="podium-slot bronze">
@@ -53,7 +68,7 @@ function HallOfFame({ user, navigate }) {
         {rows.map((r, i) => (
           <div
             key={r.name + i}
-            className={"tr" + (i === 0 ? " top1" : i === 1 ? " top2" : i === 2 ? " top3" : "")}
+            className={`tr${i === 0 ? " top1" : i === 1 ? " top2" : i === 2 ? " top3" : ""}`}
             style={{ animationDelay: `${i * 50}ms` }}
           >
             <div className="rk">#{String(r.rank).padStart(2, "0")}</div>
@@ -63,23 +78,29 @@ function HallOfFame({ user, navigate }) {
           </div>
         ))}
         {user && (
-          <React.Fragment>
+          <>
             <div className="tr you-label">▸ YOUR BEST SCORE IN {game.title}</div>
             <div className="tr you" style={{ animationDelay: `${rows.length * 50 + 50}ms` }}>
-              <div className="rk" style={{ color: "var(--yellow)" }}>#{String(youRank).padStart(2, "0")}</div>
-              <div className="pl" style={{ color: "var(--yellow)" }}>{user.name}</div>
-              <div className="sc" style={{ color: "var(--yellow)", textShadow: "0 0 6px rgba(245,255,0,0.5)" }}>{(youScore || 9999).toLocaleString("en-US")}</div>
+              <div className="rk" style={{ color: "var(--yellow)" }}>
+                #{String(youRank).padStart(2, "0")}
+              </div>
+              <div className="pl" style={{ color: "var(--yellow)" }}>
+                {user.name}
+              </div>
+              <div className="sc" style={{ color: "var(--yellow)", textShadow: "0 0 6px rgba(245,255,0,0.5)" }}>
+                {(youScore || 9999).toLocaleString("en-US")}
+              </div>
               <div className="dt">05/11/2026</div>
             </div>
-          </React.Fragment>
+          </>
         )}
       </div>
 
       <div style={{ textAlign: "center", marginTop: 32 }}>
-        <button className="btn lg" onClick={() => navigate({ name: "library" })}>BACK TO LIBRARY</button>
+        <Link href="/" className="btn lg">
+          BACK TO LIBRARY
+        </Link>
       </div>
     </div>
   );
 }
-
-window.HallOfFame = HallOfFame;
