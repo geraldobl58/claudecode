@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, JetBrains_Mono, Courier_Prime } from "next/font/google";
+import { AuthProvider } from "@/context/auth-context";
+import { Nav } from "@/components/nav";
 import "./globals.css";
 
 const pixelFont = Press_Start_2P({
@@ -31,7 +33,29 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${pixelFont.variable} ${jetbrainsMono.variable} ${courierPrime.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <div className="av-bg" />
+        <div className="av-noise" />
+        <AuthProvider>
+          <div className="relative z-[2] flex min-h-full flex-1 flex-col">
+            <Nav />
+            <main className="av-main">{children}</main>
+            <footer
+              style={{
+                borderTop: "1px solid var(--line)",
+                padding: "20px 32px",
+                textAlign: "center",
+                color: "var(--ink-faint)",
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                letterSpacing: "0.16em",
+              }}
+            >
+              © 2026 ARCADE VAULT · MADE WITH PIXELS AND NEON · v2.6.0
+            </footer>
+          </div>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
