@@ -10,8 +10,10 @@ export function Nav() {
   const pathname = usePathname();
   const { user, signOut } = useAuth();
 
-  const isLibraryActive = pathname === "/" || pathname.startsWith("/games");
+  const isHomeActive = pathname === "/";
+  const isLibraryActive = pathname.startsWith("/games");
   const isHallActive = pathname === "/hall-of-fame";
+  const isAboutActive = pathname === "/about";
   const isAuthActive = pathname === "/sign-in";
 
   const close = () => setOpen(false);
@@ -26,11 +28,17 @@ export function Nav() {
           </div>
         </Link>
         <div className="links">
-          <Link href="/" className={isLibraryActive ? "active" : ""}>
+          <Link href="/" className={isHomeActive ? "active" : ""}>
+            Home
+          </Link>
+          <Link href="/games" className={isLibraryActive ? "active" : ""}>
             Library
           </Link>
           <Link href="/hall-of-fame" className={isHallActive ? "active" : ""}>
             Hall of Fame
+          </Link>
+          <Link href="/about" className={isAboutActive ? "active" : ""}>
+            About
           </Link>
         </div>
         <div className="spacer" />
@@ -57,11 +65,17 @@ export function Nav() {
         <div className="pixel neon-cyan" style={{ fontSize: 11, marginBottom: 16 }}>
           MENU
         </div>
-        <Link href="/" onClick={close} className={isLibraryActive ? "active" : ""}>
+        <Link href="/" onClick={close} className={isHomeActive ? "active" : ""}>
+          Home
+        </Link>
+        <Link href="/games" onClick={close} className={isLibraryActive ? "active" : ""}>
           Library
         </Link>
         <Link href="/hall-of-fame" onClick={close} className={isHallActive ? "active" : ""}>
           Hall of Fame
+        </Link>
+        <Link href="/about" onClick={close} className={isAboutActive ? "active" : ""}>
+          About
         </Link>
         <Link href="/sign-in" onClick={close} className={isAuthActive ? "active" : ""}>
           {user ? "Account" : "Sign In"}

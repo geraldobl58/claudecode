@@ -33,7 +33,7 @@ export function GameOverModal({ gameId }: { gameId: string }) {
           <Link href={`/games/${gameId}/play`} className="btn">
             PLAY AGAIN
           </Link>
-          <Link href="/" className="btn magenta">
+          <Link href="/games" className="btn magenta">
             BACK TO VAULT
           </Link>
         </div>
