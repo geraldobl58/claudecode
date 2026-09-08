@@ -2,15 +2,24 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GAMES } from "@/data/games";
 import { GameOverModal } from "@/components/game-over-modal";
+import { RocksPlay } from "@/components/games/rocks-play";
+
+const DEMO_FINAL_SCORE = 15780;
 
 export function generateStaticParams() {
   return GAMES.map((g) => ({ id: g.id }));
 }
 
-export default async function GamePlayPage({ params }: PageProps<"/games/[id]/play">) {
+export default async function GamePlayPage({
+  params
+}: PageProps<"/games/[id]/play">) {
   const { id } = await params;
   const game = GAMES.find((g) => g.id === id);
   if (!game) notFound();
+
+  if (game.id === "rocks") {
+    return <RocksPlay gameId={game.id} />;
+  }
 
   return (
     <div className="av-player fade-in">
@@ -56,14 +65,12 @@ export default async function GamePlayPage({ params }: PageProps<"/games/[id]/pl
         </div>
         <div className="crt-bottom">
           <span className="led">SIGNAL OK</span>
-          <span>
-            {game.title} · CRT-83 · 60 HZ
-          </span>
+          <span>{game.title} · CRT-83 · 60 HZ</span>
           <span>LOAD · 1MB</span>
         </div>
       </div>
 
-      <GameOverModal gameId={game.id} />
+      <GameOverModal gameId={game.id} finalScore={DEMO_FINAL_SCORE} />
     </div>
   );
 }

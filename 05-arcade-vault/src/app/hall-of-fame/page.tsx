@@ -1,15 +1,32 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { GAMES, seededScores } from "@/data/games";
+import { GAMES, seededScores, type ScoreRow } from "@/data/games";
 import { useAuth } from "@/context/auth-context";
+import { getTopScores } from "@/lib/scores";
 
 export default function HallOfFamePage() {
   const [tab, setTab] = useState(GAMES[0].id);
   const { user } = useAuth();
   const game = GAMES.find((g) => g.id === tab)!;
-  const rows = useMemo(() => seededScores(tab.length * 23 + 7, 12), [tab]);
+  const [realRows, setRealRows] = useState<Record<string, ScoreRow[]>>({});
+
+  useEffect(() => {
+    if (tab !== "rocks" || realRows[tab]) return;
+    let cancelled = false;
+    getTopScores(tab, 12).then((real) => {
+      if (!cancelled) setRealRows((prev) => ({ ...prev, [tab]: real }));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [tab, realRows]);
+
+  const rows =
+    tab === "rocks"
+      ? (realRows[tab] ?? [])
+      : seededScores(tab.length * 23 + 7, 12);
   const youRank = user ? Math.floor(8 + (tab.length % 4)) : null;
   const youScore = user ? rows[5]?.score - 2400 : null;
 
@@ -24,39 +41,63 @@ export default function HallOfFamePage() {
 
       <div className="hall-tabs">
         {GAMES.map((g) => (
-          <button key={g.id} className={`chip${tab === g.id ? " active" : ""}`} onClick={() => setTab(g.id)}>
+          <button
+            key={g.id}
+            className={`chip${tab === g.id ? " active" : ""}`}
+            onClick={() => setTab(g.id)}
+          >
             {g.title}
           </button>
         ))}
       </div>
 
-      <div className="podium">
-        <div className="podium-slot silver">
-          <div className="rank-num">02</div>
-          <div className="name">{rows[1].name}</div>
-          <div className="score">{rows[1].score.toLocaleString("en-US")}</div>
-          <div className="date">{rows[1].date}</div>
-        </div>
-        <div className="podium-slot gold">
-          <div className="pixel" style={{ fontSize: 9, color: "var(--gold)", letterSpacing: "0.18em" }}>
-            CHAMPION
+      {rows.length >= 3 ? (
+        <div className="podium">
+          <div className="podium-slot silver">
+            <div className="rank-num">02</div>
+            <div className="name">{rows[1].name}</div>
+            <div className="score">{rows[1].score.toLocaleString("en-US")}</div>
+            <div className="date">{rows[1].date}</div>
           </div>
-          <div className="rank-num" style={{ fontSize: 36, marginTop: 4 }}>
-            01
+          <div className="podium-slot gold">
+            <div
+              className="pixel"
+              style={{
+                fontSize: 9,
+                color: "var(--gold)",
+                letterSpacing: "0.18em"
+              }}
+            >
+              CHAMPION
+            </div>
+            <div className="rank-num" style={{ fontSize: 36, marginTop: 4 }}>
+              01
+            </div>
+            <div className="name">{rows[0].name}</div>
+            <div className="score" style={{ fontSize: 20 }}>
+              {rows[0].score.toLocaleString("en-US")}
+            </div>
+            <div className="date">{rows[0].date}</div>
           </div>
-          <div className="name">{rows[0].name}</div>
-          <div className="score" style={{ fontSize: 20 }}>
-            {rows[0].score.toLocaleString("en-US")}
+          <div className="podium-slot bronze">
+            <div className="rank-num">03</div>
+            <div className="name">{rows[2].name}</div>
+            <div className="score">{rows[2].score.toLocaleString("en-US")}</div>
+            <div className="date">{rows[2].date}</div>
           </div>
-          <div className="date">{rows[0].date}</div>
         </div>
-        <div className="podium-slot bronze">
-          <div className="rank-num">03</div>
-          <div className="name">{rows[2].name}</div>
-          <div className="score">{rows[2].score.toLocaleString("en-US")}</div>
-          <div className="date">{rows[2].date}</div>
-        </div>
-      </div>
+      ) : (
+        <p
+          className="pixel"
+          style={{
+            fontSize: 10,
+            textAlign: "center",
+            color: "var(--ink-faint)"
+          }}
+        >
+          NO SCORES YET — BE THE FIRST TO PLAY {game.title}
+        </p>
+      )}
 
       <div className="hall-table">
         <div className="th">
@@ -79,15 +120,26 @@ export default function HallOfFamePage() {
         ))}
         {user && (
           <>
-            <div className="tr you-label">▸ YOUR BEST SCORE IN {game.title}</div>
-            <div className="tr you" style={{ animationDelay: `${rows.length * 50 + 50}ms` }}>
+            <div className="tr you-label">
+              ▸ YOUR BEST SCORE IN {game.title}
+            </div>
+            <div
+              className="tr you"
+              style={{ animationDelay: `${rows.length * 50 + 50}ms` }}
+            >
               <div className="rk" style={{ color: "var(--yellow)" }}>
                 #{String(youRank).padStart(2, "0")}
               </div>
               <div className="pl" style={{ color: "var(--yellow)" }}>
                 {user.name}
               </div>
-              <div className="sc" style={{ color: "var(--yellow)", textShadow: "0 0 6px rgba(245,255,0,0.5)" }}>
+              <div
+                className="sc"
+                style={{
+                  color: "var(--yellow)",
+                  textShadow: "0 0 6px rgba(245,255,0,0.5)"
+                }}
+              >
                 {(youScore || 9999).toLocaleString("en-US")}
               </div>
               <div className="dt">05/11/2026</div>
