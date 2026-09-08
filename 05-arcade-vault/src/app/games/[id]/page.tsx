@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { GAMES, seededScores } from "@/data/games";
+import { GAMES } from "@/data/games";
 import { getTopScores } from "@/lib/scores";
 
 export function generateStaticParams() {
@@ -14,10 +14,7 @@ export default async function GameDetailPage({
   const game = GAMES.find((g) => g.id === id);
   if (!game) notFound();
 
-  const scores =
-    id === "rocks"
-      ? await getTopScores(id, 10)
-      : seededScores(id.length * 17 + 3, 10);
+  const scores = await getTopScores(id, 10);
 
   return (
     <div className="av-detail fade-in">
@@ -78,6 +75,11 @@ export default async function GameDetailPage({
       <aside>
         <div className="leaderboard">
           <h3>TOP SCORES</h3>
+          {scores.length === 0 && (
+            <p style={{ color: "var(--ink-faint)", fontSize: 13 }}>
+              No scores yet — be the first to play.
+            </p>
+          )}
           {scores.map((r, i) => (
             <div
               key={r.name}

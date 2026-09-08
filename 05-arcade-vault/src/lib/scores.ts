@@ -20,7 +20,9 @@ export async function getTopScores(
     .limit(limit);
 
   if (error) {
-    console.error("getTopScores failed", error);
+    console.error(
+      `getTopScores failed: ${error.message} (code: ${error.code})`
+    );
     return [];
   }
 

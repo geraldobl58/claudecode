@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { GAMES, seededScores, type ScoreRow } from "@/data/games";
+import { GAMES, type ScoreRow } from "@/data/games";
 import { useAuth } from "@/context/auth-context";
 import { getTopScores } from "@/lib/scores";
 
@@ -10,23 +10,20 @@ export default function HallOfFamePage() {
   const [tab, setTab] = useState(GAMES[0].id);
   const { user } = useAuth();
   const game = GAMES.find((g) => g.id === tab)!;
-  const [realRows, setRealRows] = useState<Record<string, ScoreRow[]>>({});
+  const [rowsByTab, setRowsByTab] = useState<Record<string, ScoreRow[]>>({});
 
   useEffect(() => {
-    if (tab !== "rocks" || realRows[tab]) return;
+    if (rowsByTab[tab]) return;
     let cancelled = false;
     getTopScores(tab, 12).then((real) => {
-      if (!cancelled) setRealRows((prev) => ({ ...prev, [tab]: real }));
+      if (!cancelled) setRowsByTab((prev) => ({ ...prev, [tab]: real }));
     });
     return () => {
       cancelled = true;
     };
-  }, [tab, realRows]);
+  }, [tab, rowsByTab]);
 
-  const rows =
-    tab === "rocks"
-      ? (realRows[tab] ?? [])
-      : seededScores(tab.length * 23 + 7, 12);
+  const rows = rowsByTab[tab] ?? [];
   const youRank = user ? Math.floor(8 + (tab.length % 4)) : null;
   const youScore = user ? rows[5]?.score - 2400 : null;
 
