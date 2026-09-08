@@ -1,6 +1,6 @@
 # 03 — Supabase Integration
 
-- **Estado:** Em revisão
+- **Estado:** Implementado
 - **Depende de:** —
 - **Data:** 2026-09-08
 - **Objetivo:** Conectar o Arcade Vault a um projeto Supabase real (cliente, variáveis de ambiente e schema `games`/`scores`) para servir de base de persistência a qualquer jogo do catálogo.
@@ -60,15 +60,15 @@ create policy "anyone can submit a score" on public.scores
 2. Adicionar `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` ao `.env` (não versionado — confirmado no `.gitignore`).
 3. Criar `src/lib/supabase.ts` com o cliente singleton.
 4. Criar `src/lib/scores.ts` com `getTopScores`/`submitScore`, mapeando linhas de `scores` para o tipo `ScoreRow` já existente em `src/data/games.ts` (`{rank, name, score, date}`), para minimizar mudanças nos componentes que já consumiam `seededScores`.
-5. Aplicar a migration acima via Supabase MCP (`apply_migration`) contra o projeto `ooflghnlgfwfnkupoqpd`, incluindo o seed de `games`. **Pendente** — ver Riscos.
+5. Aplicar a migration acima via Supabase MCP (`apply_migration`) contra o projeto `ooflghnlgfwfnkupoqpd`, incluindo o seed de `games`. **Concluído** — migrations `create_games_and_scores` e `seed_games_catalog` aplicadas; insert/select validados manualmente via `execute_sql` e a linha de teste removida.
 
 ## Critérios de aceite
 
 - [x] `npm run build` completa sem erros com o cliente Supabase importado.
 - [x] `getTopScores`/`submitScore` tratam erro de rede/consulta sem lançar exceção não capturada (retornam `[]` / propagam erro tipado para a UI mostrar estado de falha).
-- [ ] As tabelas `public.games` e `public.scores` existem no projeto Supabase.
-- [ ] Um `insert` em `scores` via `submitScore` retorna sucesso (sem erro `PGRST205`).
-- [ ] Um `select` em `scores` via `getTopScores` retorna as linhas inseridas, ordenadas por `score desc`.
+- [x] As tabelas `public.games` e `public.scores` existem no projeto Supabase.
+- [x] Um `insert` em `scores` via `submitScore` retorna sucesso (sem erro `PGRST205`).
+- [x] Um `select` em `scores` via `getTopScores` retorna as linhas inseridas, ordenadas por `score desc`.
 
 ## Decisões
 
@@ -82,6 +82,6 @@ create policy "anyone can submit a score" on public.scores
 
 | Risco | Mitigação |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| MCP do Supabase não conectado nesta sessão → migration não aplicada | Usuário reinicia o Claude Code no projeto e aprova o servidor `supabase` de `.mcp.json`; assim que conectado, a migration do modelo de dados acima é aplicada e os critérios de aceite pendentes são revalidados. |
+| ~~MCP do Supabase não conectado nesta sessão → migration não aplicada~~ | Resolvido: usuário reiniciou o Claude Code e aprovou o servidor `supabase` de `.mcp.json`; migration aplicada e critérios de aceite revalidados nesta sessão. |
 | Sem migration versionada em arquivo, o schema só existe "na cabeça" do MCP | Documentado nesta spec (fonte da verdade textual); considerar exportar a migration para `supabase/migrations/` em uma spec futura se o projeto crescer. |
 | `.env` com a URL/chave do projeto sendo usado tanto localmente quanto por qualquer outro colaborador do repo | Chave é publishable/RLS-protegida, não é segredo de servidor — risco baixo, mas documentado. |
