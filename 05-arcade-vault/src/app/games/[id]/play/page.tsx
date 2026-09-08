@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { GAMES } from "@/data/games";
 import { GameOverModal } from "@/components/game-over-modal";
 import { RocksPlay } from "@/components/games/rocks-play";
+import { TetrisPlay } from "@/components/games/tetris-play";
 
 const DEMO_FINAL_SCORE = 15780;
 
@@ -19,6 +20,10 @@ export default async function GamePlayPage({
 
   if (game.id === "rocks") {
     return <RocksPlay gameId={game.id} />;
+  }
+
+  if (game.id === "tetris") {
+    return <TetrisPlay gameId={game.id} />;
   }
 
   return (

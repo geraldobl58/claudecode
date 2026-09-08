@@ -24,6 +24,17 @@ export const GAMES: Game[] = [
     color: "yellow",
     best: 41200,
     plays: "15.6K"
+  },
+  {
+    id: "tetris",
+    title: "TETRIS",
+    short: "Fit the pieces before the ceiling crushes you.",
+    long: "Geometric pieces fall from the darkness. Rotate them, lock them in, and clear lines to survive. The speed ramps up without mercy every 10 lines.",
+    cat: "PUZZLE",
+    cover: "cover-tetro",
+    color: "magenta",
+    best: 184220,
+    plays: "31.8K"
   }
 ];
 

@@ -1,0 +1,59 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - link "ARCADE VAULT" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e7]:
+        - link "Home" [ref=e8] [cursor=pointer]:
+          - /url: /
+        - link "Library" [ref=e9] [cursor=pointer]:
+          - /url: /games
+        - link "Hall of Fame" [ref=e10] [cursor=pointer]:
+          - /url: /hall-of-fame
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=e12]: CREDITS · 03
+      - link "Sign In" [ref=e15] [cursor=pointer]:
+        - /url: /sign-in
+    - complementary [ref=e16]:
+      - generic [ref=e17]: MENU
+      - link "Home" [ref=e18] [cursor=pointer]:
+        - /url: /
+      - link "Library" [ref=e19] [cursor=pointer]:
+        - /url: /games
+      - link "Hall of Fame" [ref=e20] [cursor=pointer]:
+        - /url: /hall-of-fame
+      - link "About" [ref=e21] [cursor=pointer]:
+        - /url: /about
+      - link "Sign In" [ref=e22] [cursor=pointer]:
+        - /url: /sign-in
+      - generic [ref=e24]: CREDITS · 03
+    - main [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]: Player
+              - generic [ref=e31]: GUEST
+            - generic [ref=e32]:
+              - generic [ref=e33]: Score
+              - generic [ref=e34]: "0"
+            - generic [ref=e35]:
+              - generic [ref=e36]: Lines
+              - generic [ref=e37]: "0"
+            - generic [ref=e38]:
+              - generic [ref=e39]: Level
+              - generic [ref=e40]: "01"
+            - generic [ref=e41]: Next
+          - generic [ref=e61]:
+            - button "PAUSE" [ref=e62] [cursor=pointer]
+            - button "END" [ref=e63] [cursor=pointer]
+            - link "EXIT" [ref=e64] [cursor=pointer]:
+              - /url: /games/tetris
+        - generic [ref=e68]:
+          - generic [ref=e69]: SIGNAL OK
+          - generic [ref=e70]: TETRIS · CRT-83 · 60 HZ
+          - generic [ref=e71]: LOAD · 1MB
+    - contentinfo [ref=e72]: © 2026 ARCADE VAULT · MADE WITH PIXELS AND NEON · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=e78] [cursor=pointer]
+  - alert [ref=e82]
