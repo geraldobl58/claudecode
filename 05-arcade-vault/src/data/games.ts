@@ -35,6 +35,17 @@ export const GAMES: Game[] = [
     color: "magenta",
     best: 184220,
     plays: "31.8K"
+  },
+  {
+    id: "arkanoid",
+    title: "ARKANOID",
+    short: "Bounce the ball and smash neon walls.",
+    long: "Pilot a paddle-ship and bounce a plasma core to pulverize walls of chromatic blocks. Every level rearranges the grid into impossible patterns. How far will your streak go?",
+    cat: "ARCADE",
+    cover: "cover-bricks",
+    color: "cyan",
+    best: 28450,
+    plays: "12.4K"
   }
 ];
 
