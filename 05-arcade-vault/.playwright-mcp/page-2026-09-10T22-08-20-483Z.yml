@@ -1,0 +1,62 @@
+- generic [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - navigation [ref=f4e3]:
+      - link "ARCADE VAULT" [ref=f4e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f4e7]:
+        - link "Home" [ref=f4e8] [cursor=pointer]:
+          - /url: /
+        - link "Library" [ref=f4e9] [cursor=pointer]:
+          - /url: /games
+        - link "Hall of Fame" [ref=f4e10] [cursor=pointer]:
+          - /url: /hall-of-fame
+        - link "About" [ref=f4e11] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=f4e12]: CREDITS · 03
+      - link "Sign In" [ref=f4e15] [cursor=pointer]:
+        - /url: /sign-in
+    - complementary [ref=f4e16]:
+      - generic [ref=f4e17]: MENU
+      - link "Home" [ref=f4e18] [cursor=pointer]:
+        - /url: /
+      - link "Library" [ref=f4e19] [cursor=pointer]:
+        - /url: /games
+      - link "Hall of Fame" [ref=f4e20] [cursor=pointer]:
+        - /url: /hall-of-fame
+      - link "About" [ref=f4e21] [cursor=pointer]:
+        - /url: /about
+      - link "Sign In" [ref=f4e22] [cursor=pointer]:
+        - /url: /sign-in
+      - generic [ref=f4e24]: CREDITS · 03
+    - main [ref=f4e25]:
+      - generic [ref=f4e26]:
+        - generic [ref=f4e27]:
+          - heading "HALL OF FAME" [level=1] [ref=f4e28]
+          - paragraph [ref=f4e29]: THE NAMES THAT NEVER FADE FROM THE SCREEN
+        - generic [ref=f4e30]:
+          - button "ROCKS" [ref=f4e31] [cursor=pointer]
+          - button "TETRIS" [ref=f4e32] [cursor=pointer]
+          - button "ARKANOID" [ref=f4e33] [cursor=pointer]
+          - button "SNAKE" [active] [ref=f4e34] [cursor=pointer]
+        - paragraph [ref=f4e35]: NO SCORES YET — BE THE FIRST TO PLAY SNAKE
+        - generic [ref=f4e36]:
+          - generic [ref=f4e37]:
+            - generic [ref=f4e38]: RANK
+            - generic [ref=f4e39]: PLAYER
+            - generic [ref=f4e40]: SCORE
+            - generic [ref=f4e41]: DATE
+          - generic [ref=f4e55]:
+            - generic [ref=f4e56]: "#01"
+            - generic [ref=f4e57]: GUEST
+            - generic [ref=f4e58]: "20"
+            - generic [ref=f4e59]: 10/09/2026
+          - generic [ref=f4e60]:
+            - generic [ref=f4e61]: "#02"
+            - generic [ref=f4e62]: GUEST
+            - generic [ref=f4e63]: "10"
+            - generic [ref=f4e64]: 10/09/2026
+        - link "BACK TO LIBRARY" [ref=f4e43] [cursor=pointer]:
+          - /url: /games
+    - contentinfo [ref=f4e44]: © 2026 ARCADE VAULT · MADE WITH PIXELS AND NEON · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f4e50] [cursor=pointer]
+  - alert [ref=f4e54]
