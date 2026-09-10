@@ -1,0 +1,235 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - navigation [ref=f5e3]:
+      - link "ARCADE VAULT" [ref=f5e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f5e7]:
+        - link "Home" [ref=f5e8] [cursor=pointer]:
+          - /url: /
+        - link "Library" [ref=f5e9] [cursor=pointer]:
+          - /url: /games
+        - link "Hall of Fame" [ref=f5e10] [cursor=pointer]:
+          - /url: /hall-of-fame
+        - link "About" [ref=f5e11] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=f5e12]: CREDITS · 03
+      - link "Sign In" [ref=f5e15] [cursor=pointer]:
+        - /url: /sign-in
+    - complementary [ref=f5e16]:
+      - generic [ref=f5e17]: MENU
+      - link "Home" [ref=f5e18] [cursor=pointer]:
+        - /url: /
+      - link "Library" [ref=f5e19] [cursor=pointer]:
+        - /url: /games
+      - link "Hall of Fame" [ref=f5e20] [cursor=pointer]:
+        - /url: /hall-of-fame
+      - link "About" [ref=f5e21] [cursor=pointer]:
+        - /url: /about
+      - link "Sign In" [ref=f5e22] [cursor=pointer]:
+        - /url: /sign-in
+      - generic [ref=f5e24]: CREDITS · 03
+    - main [ref=f5e25]:
+      - generic [ref=f5e26]:
+        - generic [ref=f5e28]:
+          - generic [ref=f5e29]: ▸ INSERT COIN_
+          - heading "THE CLASSIC ARCADE IS BACK" [level=1] [ref=f5e30]:
+            - generic [ref=f5e31]: THE CLASSIC
+            - generic [ref=f5e32]: ARCADE IS
+            - generic [ref=f5e33]: BACK
+          - paragraph [ref=f5e34]: Play the best classics straight from your browser.No downloads. No cost. Just fun.
+          - generic [ref=f5e35]:
+            - link "▶ EXPLORE GAMES" [ref=f5e36] [cursor=pointer]:
+              - /url: /games
+            - link "✦ CREATE ACCOUNT" [ref=f5e37] [cursor=pointer]:
+              - /url: /sign-in
+          - generic [aria-hidden] [ref=f5e38]:
+            - generic [ref=f5e39]: SCROLL
+            - generic [ref=f5e40]: ▼
+        - generic [ref=f5e41]:
+          - generic [ref=f5e42]:
+            - generic [ref=f5e43]: // 01
+            - heading "WHY ARCADE VAULT?" [level=2] [ref=f5e44]
+          - generic [ref=f5e46]:
+            - generic [ref=f5e47]:
+              - generic [ref=f5e57]: CLASSIC GAMES
+              - generic [ref=f5e58]: Starting with ROCKS, our take on the arcade classic. More titles landing soon.
+            - generic [ref=f5e59]:
+              - generic [ref=f5e67]: 100% FREE
+              - generic [ref=f5e68]: No subscriptions, no hidden fees. Every game is available for free, forever.
+            - generic [ref=f5e69]:
+              - generic [ref=f5e80]: LADDER BOARDS
+              - generic [ref=f5e81]: Compete with players from all over the world. Climb the ranking and prove who's the best.
+            - generic [ref=f5e82]:
+              - generic [ref=f5e93]: ALWAYS GROWING
+              - generic [ref=f5e94]: We add new games constantly. Come back often — there's always something new to play.
+        - generic [ref=f5e95]:
+          - generic [ref=f5e96]:
+            - generic [ref=f5e97]: // 02
+            - heading "HOW TO PLAY" [level=2] [ref=f5e98]
+          - generic [ref=f5e100]:
+            - generic [ref=f5e101]:
+              - generic [ref=f5e102]: "01"
+              - generic [ref=f5e103]: PICK A GAME
+              - generic [ref=f5e104]: Browse the library and choose any classic that catches your eye.
+            - generic [ref=f5e105]:
+              - generic [ref=f5e106]: "02"
+              - generic [ref=f5e107]: SIGN IN OR PLAY AS GUEST
+              - generic [ref=f5e108]: Create an account to save your scores, or jump straight into a guest run.
+            - generic [ref=f5e109]:
+              - generic [ref=f5e110]: "03"
+              - generic [ref=f5e111]: USE KEYBOARD OR TOUCH
+              - generic [ref=f5e112]: Every game responds to arrow keys, WASD, or touch controls on mobile.
+            - generic [ref=f5e113]:
+              - generic [ref=f5e114]: "04"
+              - generic [ref=f5e115]: CLIMB THE HALL OF FAME
+              - generic [ref=f5e116]: Beat your best score and watch your name rise on the global leaderboard.
+        - generic [ref=f5e117]:
+          - generic [ref=f5e118]:
+            - generic [ref=f5e119]: // 03
+            - heading "GAMES AVAILABLE NOW" [level=2] [ref=f5e120]
+          - generic [ref=f5e122]:
+            - link "▲ ROCKS SHOOTER" [ref=f5e123] [cursor=pointer]:
+              - /url: /games/rocks
+              - generic [ref=f5e124]: ▲
+              - generic [ref=f5e126]:
+                - generic [ref=f5e127]: ROCKS
+                - generic [ref=f5e128]: SHOOTER
+            - link "TETRIS PUZZLE" [ref=f5e129] [cursor=pointer]:
+              - /url: /games/tetris
+              - generic [ref=f5e132]:
+                - generic [ref=f5e133]: TETRIS
+                - generic [ref=f5e134]: PUZZLE
+            - link "ARKANOID ARCADE" [ref=f5e135] [cursor=pointer]:
+              - /url: /games/arkanoid
+              - generic [ref=f5e138]:
+                - generic [ref=f5e139]: ARKANOID
+                - generic [ref=f5e140]: ARCADE
+            - link "SNAKE ARCADE" [ref=f5e141] [cursor=pointer]:
+              - /url: /games/snake
+              - generic [ref=f5e144]:
+                - generic [ref=f5e145]: SNAKE
+                - generic [ref=f5e146]: ARCADE
+          - link "VIEW ALL GAMES →" [ref=f5e148] [cursor=pointer]:
+            - /url: /games
+        - generic [ref=f5e150]:
+          - generic [ref=f5e151]:
+            - generic [ref=f5e152]: "4"
+            - generic [ref=f5e153]: GAMES
+            - generic [ref=f5e154]: AND COUNTING
+          - generic [ref=f5e155]:
+            - generic [ref=f5e156]: THOUSANDS
+            - generic [ref=f5e157]: OF MATCHES
+            - generic [ref=f5e158]: PLAYED EVERY DAY
+          - generic [ref=f5e159]:
+            - generic [ref=f5e160]: GLOBAL
+            - generic [ref=f5e161]: RANKING
+            - generic [ref=f5e162]: COMPETE WITH THE WORLD
+        - generic [ref=f5e163]:
+          - generic [ref=f5e164]:
+            - generic [ref=f5e165]: // 04
+            - heading "LIVE ACTIVITY" [level=2] [ref=f5e166]
+          - generic [ref=f5e168]:
+            - generic [ref=f5e169]:
+              - generic [ref=f5e170]: ▸ RECENT SCORES
+              - generic [ref=f5e172]:
+                - generic [ref=f5e173]:
+                  - generic [ref=f5e174]: MAGENTA88
+                  - generic [ref=f5e175]: ▸ ROCKS
+                  - generic [ref=f5e176]: +269,869
+                  - generic [ref=f5e177]: 04/03/2026
+                - generic [ref=f5e178]:
+                  - generic [ref=f5e179]: PX_KAI
+                  - generic [ref=f5e180]: ▸ TETRIS
+                  - generic [ref=f5e181]: +201,111
+                  - generic [ref=f5e182]: 10/07/2026
+                - generic [ref=f5e183]:
+                  - generic [ref=f5e184]: RGB_QUEEN
+                  - generic [ref=f5e185]: ▸ ARKANOID
+                  - generic [ref=f5e186]: +193,054
+                  - generic [ref=f5e187]: 20/08/2026
+                - generic [ref=f5e188]:
+                  - generic [ref=f5e189]: ATARI_KID
+                  - generic [ref=f5e190]: ▸ SNAKE
+                  - generic [ref=f5e191]: +159,057
+                  - generic [ref=f5e192]: 16/01/2026
+                - generic [ref=f5e193]:
+                  - generic [ref=f5e194]: VECTORX
+                  - generic [ref=f5e195]: ▸ ROCKS
+                  - generic [ref=f5e196]: +56,879
+                  - generic [ref=f5e197]: 08/06/2026
+                - generic [ref=f5e198]:
+                  - generic [ref=f5e199]: M00NRYU
+                  - generic [ref=f5e200]: ▸ TETRIS
+                  - generic [ref=f5e201]: +55,687
+                  - generic [ref=f5e202]: 20/09/2026
+                - generic [ref=f5e203]:
+                  - generic [ref=f5e204]: GLITCHA
+                  - generic [ref=f5e205]: ▸ ARKANOID
+                  - generic [ref=f5e206]: +53,957
+                  - generic [ref=f5e207]: 18/08/2026
+            - generic [ref=f5e208]:
+              - generic [ref=f5e209]:
+                - generic [ref=f5e210]: ▸ TOP PLAYERS · TODAY
+                - link "VIEW HALL OF FAME →" [ref=f5e211] [cursor=pointer]:
+                  - /url: /hall-of-fame
+              - generic [ref=f5e212]:
+                - generic [ref=f5e213]:
+                  - generic [ref=f5e214]: "#01"
+                  - generic [ref=f5e215]: MAGENTA88
+                  - generic [ref=f5e216]: 265,959
+                - generic [ref=f5e217]:
+                  - generic [ref=f5e218]: "#02"
+                  - generic [ref=f5e219]: RGB_QUEEN
+                  - generic [ref=f5e220]: 255,606
+                - generic [ref=f5e221]:
+                  - generic [ref=f5e222]: "#03"
+                  - generic [ref=f5e223]: SCANLINE
+                  - generic [ref=f5e224]: 143,054
+                - generic [ref=f5e225]:
+                  - generic [ref=f5e226]: "#04"
+                  - generic [ref=f5e227]: PX_KAI
+                  - generic [ref=f5e228]: 84,470
+                - generic [ref=f5e229]:
+                  - generic [ref=f5e230]: "#05"
+                  - generic [ref=f5e231]: ATARI_KID
+                  - generic [ref=f5e232]: 83,491
+        - generic [ref=f5e233]:
+          - generic [ref=f5e234]:
+            - generic [ref=f5e235]: // 05
+            - heading "PRICING" [level=2] [ref=f5e236]
+          - generic [ref=f5e238]:
+            - generic [ref=f5e239]:
+              - generic [ref=f5e240]: SINGLE PLAN
+              - generic [ref=f5e241]: VAULT PLAYER
+              - generic [ref=f5e242]:
+                - generic [ref=f5e243]: $0
+                - generic [ref=f5e244]: / FOREVER
+              - generic [ref=f5e245]: NO TRICKS · NO FINE PRINT
+              - list [ref=f5e246]:
+                - listitem [ref=f5e247]: ✔ Access to every game
+                - listitem [ref=f5e248]: ✔ Global ranking and Hall of Fame
+                - listitem [ref=f5e249]: ✔ No ads between matches
+                - listitem [ref=f5e250]: ✔ Your scores are saved
+                - listitem [ref=f5e251]: ✔ New games every month
+                - listitem [ref=f5e252]: ✔ Works in any browser
+              - link "START FREE →" [ref=f5e253] [cursor=pointer]:
+                - /url: /sign-in
+              - generic [ref=f5e254]: We don't ask for a card. We never will.
+              - generic [ref=f5e255]: FREEPLAY
+            - generic [ref=f5e257]:
+              - generic [ref=f5e258]:
+                - generic [ref=f5e259]: IS IT REALLY FREE?
+                - generic [ref=f5e260]: Yes. Arcade Vault is a non-profit project made out of love for the classics. There is no hidden "premium" tier.
+              - generic [ref=f5e261]:
+                - generic [ref=f5e262]: DO I NEED AN ACCOUNT?
+                - generic [ref=f5e263]: No. You can play as a guest. If you want to save your score and appear on the ranking, sign up in 10 seconds.
+              - generic [ref=f5e264]:
+                - generic [ref=f5e265]: HOW DO YOU SURVIVE WITHOUT CHARGING?
+                - generic [ref=f5e266]: It's a community project. If you like it, share it. That's the only coin we accept.
+        - generic [ref=f5e267]:
+          - heading "READY TO PLAY?" [level=2] [ref=f5e268]
+          - link "INSERT COIN →" [ref=f5e269] [cursor=pointer]:
+            - /url: /games
+          - generic [ref=f5e270]: Free. No mandatory sign-up. Start in seconds.
+    - contentinfo [ref=f5e271]: © 2026 ARCADE VAULT · MADE WITH PIXELS AND NEON · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f5e277] [cursor=pointer]

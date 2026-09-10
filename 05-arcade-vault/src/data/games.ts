@@ -46,6 +46,17 @@ export const GAMES: Game[] = [
     color: "cyan",
     best: 28450,
     plays: "12.4K"
+  },
+  {
+    id: "snake",
+    title: "SNAKE",
+    short: "Grow without biting your own tail.",
+    long: "A serpent of light slithers across the grid hunting fruit. Every bite makes it longer and faster. One wrong move and it devours itself.",
+    cat: "ARCADE",
+    cover: "cover-snake",
+    color: "green",
+    best: 7820,
+    plays: "9.1K"
   }
 ];
 
