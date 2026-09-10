@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Arcade Vault — a platform for playing games online and competing for the highest score (see README.md). The codebase is currently the unmodified `create-next-app` scaffold (App Router); no game features, routes, or components exist yet beyond `src/app/page.tsx` and `src/app/layout.tsx`. All product UI copy, routes, and reference material are in English — no Spanish or Portuguese anywhere in the app.
+Arcade Vault — a platform for playing games online and competing for the highest score (see README.md). The App Router scaffold has been built out into a working product: Home, Library (`/games`), a per-game detail page (`/games/[id]`), a per-game player (`/games/[id]/play`), Hall of Fame (`/hall-of-fame`), About, and a mocked Sign In flow. Four games are live in the catalog (`src/data/games.ts`): Asteroids (`rocks`), Tetris, Arkanoid, and Snake — each with a canvas engine component and a real Supabase-backed leaderboard. All product UI copy, routes, and reference material are in English — no Spanish or Portuguese anywhere in the app (specs under `specs/` are written in Portuguese per the spec-driven workflow below; that's project process documentation, not app content, so it's exempt from this rule).
 
 ## Critical: this is not the Next.js you know
 
@@ -29,26 +29,23 @@ There is no test runner configured in this repository yet.
 
 ## Architecture
 
-- App Router under `src/app/`, with the `@/*` path alias mapped to `src/*` (tsconfig.json).
+- App Router under `src/app/`, with the `@/*` path alias mapped to `src/*` (tsconfig.json). Routes: `page.tsx` (Home), `about/`, `games/` (Library), `games/[id]/` (detail), `games/[id]/play/` (player), `hall-of-fame/`, `sign-in/`.
 - Styling is Tailwind CSS v4 via the CSS-first `@import "tailwindcss"` + `@theme inline` approach in `src/app/globals.css` (no `tailwind.config.js` — theme tokens are defined directly in CSS).
 - Fonts: `next/font/google` (Geist Sans/Mono) wired into CSS variables and applied on `<html>` in `src/app/layout.tsx`.
 - TypeScript strict mode is on.
+- **Catalog** (`src/data/games.ts`): `GAMES` is the single source of truth for the four playable games (`rocks`, `tetris`, `arkanoid`, `snake`) — id, title, category, cover art class, accent color. `seededScores()` still generates fake rows for the Home page's "LIVE ACTIVITY"/"TOP PLAYERS" tickers only; every real per-game leaderboard goes through Supabase.
+- **Leaderboard** (`src/lib/scores.ts` + `src/lib/supabase.ts`): a single generic `scores` table keyed by `game_id` (columns: `game_id`, `player_name`, `score`, `created_at`). `getTopScores(gameId, limit)` and `submitScore(gameId, playerName, score)` are the only two entry points — used by the game-detail page, Hall of Fame, and `GameOverModal`. Supabase client reads `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` from `.env` (not committed).
+- **Auth** (`src/context/auth-context.tsx`): still fully mocked — `AuthProvider`/`useAuth()` store a `{ name }` object in `localStorage` (`av_user`), no real backend. There is no stable link between a signed-in mock user and the `player_name` free-text column in `scores`; don't assume one exists (see `specs/05-leaderboard-hall-of-fame.md`, "YOUR BEST SCORE" caveat).
+- **Games** (`src/components/games/`): each game is a canvas engine component (`<name>-game.tsx`, imperative `requestAnimationFrame` loop, HUD state reported to React via a callback/ref handle rather than drawn on canvas) plus a thin page wrapper (`<name>-play.tsx`) that owns HUD chrome, pause/resume/end controls, and `GameOverModal` wiring. `games/[id]/play/page.tsx` dispatches on `game.id` to the right `*Play` component. This split was established by Asteroids (`rocks-play.tsx` + `asteroids-game.tsx`, SPEC 04) and repeated for Tetris, Arkanoid, and Snake — follow it for any new game rather than inventing a new pattern.
 
 ## Design reference: `references/templates/`
 
-A standalone HTML/JSX prototype of the intended product — not part of the Next.js app, not imported from `src/`, and not built by any npm script. Open `references/templates/Arcade Vault.html` directly in a browser (loads React 18 + Babel standalone from CDN, transpiles the `.jsx` files in-browser) to preview it. It defines the target screens and client-side flow to port into the App Router:
+A standalone HTML/JSX prototype of the original product vision — not part of the Next.js app, not imported from `src/`, and not built by any npm script. Open `references/templates/Arcade Vault.html` directly in a browser (loads React 18 + Babel standalone from CDN, transpiles the `.jsx` files in-browser) to preview it. It's largely superseded now that the real routes exist under `src/app/`, but is still useful for the original UX/interaction intent (`app.jsx` root shell, `nav.jsx`, `auth.jsx`, `biblioteca.jsx`, `detalle.jsx`, `reproductor.jsx`, `salon.jsx`, `data.jsx`). Treat it as historical reference only — never port its client-only hash-router/localStorage pattern wholesale; the App Router implementation already reimplements this idiomatically (server components, real routing, Supabase data).
 
-- `app.jsx` — root shell: hash-based routing (`location.hash`) and `av_user`/`av_scores` state persisted to `localStorage`.
-- `nav.jsx` — top nav (Library / Hall of Fame, auth button).
-- `auth.jsx` — sign in / sign up forms (mocked, no real auth).
-- `biblioteca.jsx` — game library grid (`GameCard`).
-- `detalle.jsx` — single game detail page (`GameDetail`).
-- `reproductor.jsx` — the game player/HUD (`GamePlayer`) with score, lives, level.
-- `salon.jsx` — leaderboard / hall of fame (`HallOfFame`), per-game score tables.
-- `data.jsx` — mock `GAMES` array (id, title, category, cover art class, best score, play count) shared by the above.
+## Porting a new game: `started-games/`
 
-Treat this as UX/interaction reference, not code to import — when building the real routes under `src/app/`, reimplement this logic idiomatically for the App Router (server components, real routing, real auth/data) rather than copying the client-only hash-router/localStorage pattern wholesale.
+`started-games/<slug>/` holds standalone game prototypes (currently `arkanoid`, `asteroids`, `tetris` — kept even after porting, as source reference). To bring one in, use the `/add-game <slug>` skill (`.claude/skills/add-game/`): it generates a spec under `specs/` following the established port recipe (Supabase `scores` schema, canvas-engine-plus-play-wrapper split — see Architecture above) but never touches `src/` itself. Review and approve the generated spec, then run `/spec-impl` against it. Not every game needs a prototype first — Snake (SPEC 08) was designed and specced from scratch with no `started-games/` entry, so absence of a prototype isn't a blocker, just means more gameplay decisions get made during spec-writing instead of extracted from existing code.
 
-## Workflow
+## Workflow: Spec Driven Design
 
-The README indicates this project intends to follow Spec Driven Design using the `/spec` and `/spec-impl` workflow from https://github.com/Klerith/fernando-skills, installed via `npx skills@latest add Klerith/fernando-skills`. These skills are not currently installed in this repo — check for their presence before assuming `/spec` or `/spec-impl` are available.
+This project follows Spec Driven Design using the `/spec`, `/spec-impl`, and `/add-game` skills from <https://github.com/Klerith/fernando-skills>, installed under `.claude/skills/`. Specs live in `specs/NN-short-name.md`, numbered sequentially (currently `01`–`08`), each with a status header (`Estado: Aprovado | Em revisão | Implementado`), dependencies on prior specs, scope, data model, implementation plan, acceptance criteria, and decisions log. Specs are written in Portuguese — this is process documentation for the spec-driven workflow, not app content, and doesn't conflict with the English-only rule for product UI. Before starting non-trivial work, check `specs/` for an existing or in-progress spec covering it rather than assuming none exists.
